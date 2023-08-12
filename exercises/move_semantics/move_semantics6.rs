@@ -9,20 +9,19 @@
 fn main() {
     let data = "Rust is great!".to_string();
 
-    get_char(data);
+    get_char(&data);
 
-    let mut tmp = &data;
-    string_uppercase(&mut tmp);
+    string_uppercase(&data);
 }
 
 // Should not take ownership
-fn get_char(data: String) -> char {
+fn get_char(data: &String) -> char {
     data.chars().last().unwrap()
 }
 
 // Should take ownership
-fn string_uppercase(data: &mut String) {
-    data.to_uppercase();
+fn string_uppercase(mut data: &String) {
+    &data.to_uppercase();
 
     println!("{}", data);
 }
